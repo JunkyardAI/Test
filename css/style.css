@@ -1,0 +1,138 @@
+/* --- GLOBAL RESET & SCROLLBARS --- */
+body {
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    background-color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #4b5563; /* gray-600 */
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #6b7280; /* gray-500 */
+}
+
+/* --- UTILITIES --- */
+
+/* Glassmorphism for Dock & Launcher */
+.glass {
+    background: rgba(30, 30, 40, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* --- ANIMATIONS --- */
+
+@keyframes zoomIn {
+    0% { opacity: 0; transform: scale(0.95) translate(-50%, -50%); }
+    100% { opacity: 1; transform: scale(1) translate(-50%, -50%); }
+}
+.animate-zoomIn {
+    animation: zoomIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transform-origin: center center;
+}
+
+@keyframes popIn {
+    0% { opacity: 0; transform: scale(0.95) translateY(10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-popIn {
+    animation: popIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideIn {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+.animate-slideIn {
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+/* --- COMPONENT STYLES --- */
+
+/* Editor File Tree */
+.file-tree-item {
+    padding: 4px 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #9ca3af;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.1s;
+}
+.file-tree-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+.file-tree-item.active {
+    background-color: rgba(59, 130, 246, 0.15); 
+    color: #60a5fa; 
+    font-weight: 500;
+}
+
+/* Desktop Icons */
+#desktop-icons .group:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Windows */
+.window {
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transition: opacity 0.2s, transform 0.2s;
+    will-change: transform, opacity;
+}
+.window.minimized {
+    transform: scale(0.8) translateY(50px) !important;
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+/* Debugger Helpers */
+.window-close, .close-btn { cursor: pointer; }
+
+/* CodeMirror Theme Overrides */
+.CodeMirror {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 13px;
+    height: 100% !important;
+    background-color: transparent !important;
+}
+.cm-s-dracula.CodeMirror { background-color: #282a36 !important; }
+.CodeMirror-gutters {
+    background-color: #282a36 !important;
+    border-right: 1px solid #44475a !important;
+}
+
+/* --- CONTEXT MENU --- */
+#contextMenu {
+    display: none; /* JS toggles this */
+    flex-direction: column;
+}
+.ctx-item {
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #e5e7eb;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+.ctx-item:hover {
+    background-color: #374151;
+}
+.ctx-item:first-child { border-top-left-radius: 6px; border-top-right-radius: 6px; }
+.ctx-item:last-child { border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; }
